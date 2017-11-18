@@ -37,8 +37,8 @@
     gtag('config', '{{ site.ga }}');
     </script>
 
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link id="theme-style" rel="stylesheet" href="/assets/css/styles.css">
@@ -46,16 +46,8 @@
 <body>
     <header class="header">
         <div class="container">
-            <a href="/">
-            <img class="profile-image img-responsive pull-left" src="/assets/images/avatar.png" alt="Dat Le" />
-            </a>
-            <div class="profile-content pull-left">
-                <h1 class="name">{{ site.owner }}</h1>
-                <h2 class="desc">Bug Maker</h2>
-                <ul class="social list-inline">
-                    <li><a href="mailto:lethanhdat.com"><i class="fa fa-envelope"></i></a></li>
-                    <li><a href="https://github.com/tdat00" target="_blank"><i class="fa fa-github"></i></a></li>
-                </ul>
+            <div class="home-page pull-left">
+                <a class="no-hover" href="/"><h1 class="name">{{ site.title }}</h1></a>
             </div>
         </div>
     </header>
@@ -92,11 +84,22 @@
                         </div>
                     </div>
                 </aside>
-                <aside class="aside section">
+                <aside class="profile aside section">
                         <div class="section-inner">
                             <h2 class="heading">About me</h2>
                             <div class="content">
-                                I am a lazy developer.
+                                <div class="row">
+                                    <div class="col-sm-5"><img class="profile-image img-responsive" src="/assets/images/avatar.png" alt="Dat Le" /></div>
+                                    <div class="col-sm-7 profile-content">
+                                        <div class="name">Dat Le</div>
+                                        <div class="title">Bug Maker</div>
+                                        <ul class="social list-inline">
+                                            <li><a href="mailto:lethanhdat.com"><i class="fa fa-envelope"></i></a></li>
+                                            <li><a href="skype:dat.lethanh"><i class="fa fa-skype"></i></a></li>
+                                            <li><a href="https://github.com/tdat00" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </aside>
