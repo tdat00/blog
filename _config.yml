@@ -16,18 +16,23 @@
 title: Blog - Dat Le
 owner: Dat Le
 email: lethanhdat@gmail.com
-avatar: https://avatars2.githubusercontent.com/u/4686348?s=460&v=4
-description: >- # this means to ignore newlines until "baseurl:"
+avatar: /assests/images/avatar.png
+favicon: /favicon.ico
+description: >-
   Just a simple blog.
-baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://lethanhdat.com" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  tdat00
+baseurl: "/"
+url: "https://lethanhdat.com"
+ga: UA-60503139-2
 
 # Build settings
 markdown: kramdown
-theme: minima
+highlighter: rouge
 plugins:
   - jekyll-feed
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

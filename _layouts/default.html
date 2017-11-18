@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ page.title }}</title>
+    <link rel="shortcut icon" href="{{ site.favicon }}">
+    <base href="{{ site.baseurl }}">
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- For Google -->
+    <meta name="description" content="{{ page.description }}" />
+    <meta name="keywords" content="{{ page.keywords }}" />
+    <meta name="author" content="{{ site.owner }}" />
+
+    <!-- For Facebook -->
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:description" content="{{ page.description }}" />
+
+    <!-- For Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ page.title }}" />
+    <meta name="twitter:description" content="{{ page.description }}" />
+    <meta name="twitter:image" content="" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga }}"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '{{ site.ga }}');
+    </script>
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link id="theme-style" rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="/">
+            <img class="profile-image img-responsive pull-left" src="/assets/images/avatar.png" alt="Dat Le" />
+            </a>
+            <div class="profile-content pull-left">
+                <h1 class="name">{{ site.owner }}</h1>
+                <h2 class="desc">Bug Maker</h2>
+                <ul class="social list-inline">
+                    <li><a href="mailto:lethanhdat.com"><i class="fa fa-envelope"></i></a></li>
+                    <li><a href="https://github.com/tdat00" target="_blank"><i class="fa fa-github"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container sections-wrapper">
+        <div class="row">
+            <div class="primary col-md-8 col-sm-12 col-xs-12">
+            {{ content }}
+            </div>
+            <div class="secondary col-md-4 col-sm-12 col-xs-12">
+                <aside class="list aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Recent Posts</h2>
+                        <div class="content">
+                            {% for post in site.posts limit:5 %}
+                            <a class="no-hover no-color" href="{{ post.url }}" title="{{ post.title }}">
+                            <div class="item">
+                                <h5 class="title">{{ post.title }}</h3>
+                                <p>{{ post.excerpt }}</p>
+                            </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </aside>
+                <aside class="aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Tags</h2>
+                        <div class="content">
+                            {% for tag in site.tags %}
+                            <span class="badge" data-size="{{ tag[1].size }}">
+                                {{ tag[0] }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </aside>
+                <aside class="aside section">
+                        <div class="section-inner">
+                            <h2 class="heading">About me</h2>
+                            <div class="content">
+                                I am a lazy developer.
+                            </div>
+                        </div>
+                    </aside>
+                <aside class="list aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Links</h2>
+                        <div class="content">
+                            <ul class="list-unstyled">
+                                <li><a class="no-hover" href="https://github.com/LeeVox/sdk" target="_blank"><i class="fa fa-external-link"></i> SDK for C#</a></li>
+                                <li><a class="no-hover" href="https://regextester.github.io" target="_blank"><i class="fa fa-external-link"></i> Regular Expression Tester Online</a></li>
+                                <li><a class="no-hover" href="https://leevox.com" target="_blank"><i class="fa fa-external-link"></i> LeeVox</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+                <aside class="list aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Credit</h2>
+                        <div class="content">
+                            Free website template by <a href="https://themes.3rdwavemedia.com/website-templates/free-responsive-website-template-for-developers/" target="_blank">Xiaoying Riley</a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container text-center">
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/js/main.js"></script>
+</body>
+</html>
