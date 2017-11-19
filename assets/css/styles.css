@@ -142,8 +142,15 @@ iframe {
 .section .heading {
   margin-top: 0;
   margin-bottom: 30px;
-  color: #545e69;
+  color: #3aaa64;
   font-size: 24px;
+}
+.section .heading p {
+  font-size: 14px;
+  color: #778492;
+  font-weight: normal;
+  font-style: italic;
+  padding-top: 5px;
 }
 .section .content .more-link .fa {
   margin-right: 5px;
