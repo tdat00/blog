@@ -127,6 +127,12 @@ iframe {
 .header .home-page {
   font-size: 38px;
 }
+.header .site-title {
+  color: #3aaa64;
+}
+.header .site-sub-title {
+  font-size: 24px;
+}
 /* ======= Sections======= */
 .sections-wrapper {
   padding-top: 60px;
@@ -155,6 +161,20 @@ iframe {
 .section .content .more-link .fa {
   margin-right: 5px;
   font-size: 14px;
+}
+/* post */
+.post .heading {
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: #434343;
+}
+.post .title {
+  color: #3aaa64;
+}
+.post .date {
+  min-width: 100px;
+  font-size: 14px;
+  font-style: italic;
 }
 /* List section */
 .list ul li {

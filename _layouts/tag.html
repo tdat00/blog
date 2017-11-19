@@ -3,15 +3,8 @@ layout: default
 ---
 <div>
   {% for post in site.posts %}
-  <section class="section">
-    <div class="section-inner">
-      <h2 class="heading">
-        <a href="{{ post.url }}">{{ page.title }}</a>
-      </h2>
-      <div class="content">
-        {{ post.content }}
-      </div>
-    </div>
-  </section>
+  {% if post.tags contains page.tag %}
+  {% include post.html %}
+  {% endif %}
   {% endfor %}
 </div>

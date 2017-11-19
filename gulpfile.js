@@ -61,10 +61,11 @@ gulp.task('rebuild-tags', function (cb) {
     fs.writeFileSync('./tag/' + tag + '.md',
       `---
 layout: tag
-title: Post with tag "{title}"
+title: Post with tag "{tag}"
+site-sub-title: {tag}
 tag: {tag}
 permalink: /tag/{tag-url}/
----`.replace('{title}', tags[tag]).replace('{tag}', tags[tag]).replace('{tag-url}', tag)
+---`.replace(/\{tag\}/ig, tags[tag]).replace('{tag-url}', tag)
     );
   }
   fs.writeFileSync('./_data/tags.yml', content);
@@ -78,7 +79,7 @@ gulp.task('clean-tags', function (cb) {
 });
 
 gulp.task('clean-sites', function (cb) {
-  gulp.src('./_site/**/*.*', {
+  gulp.src('./_site', {
       read: false
     })
     .pipe(clean());

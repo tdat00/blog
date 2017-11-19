@@ -55,7 +55,12 @@
     <div class="container">
       <div class="home-page pull-left">
         <a class="no-hover" href="/">
-          <h1 class="name">{{ site.title }}</h1>
+          <h1 class="site-title">
+            {{ site.title }}
+            {% if page.site-sub-title %}
+            <span class="site-sub-title">> {{ page.site-sub-title }}</span>
+            {% endif %}
+          </h1>
         </a>
       </div>
     </div>
