@@ -41,7 +41,8 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <link id="theme-style" rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/pygments/vs.min.css">
 </head>
 <body>
     <header class="header">
@@ -77,9 +78,11 @@
                         <h2 class="heading">Tags</h2>
                         <div class="content">
                             {% for tag in site.tags %}
+                            <a href="/tag/{{ tag[0] }}">
                             <span class="badge" data-size="{{ tag[1].size }}">
                                 {{ tag[0] }}
                             </span>
+                            </a>
                             {% endfor %}
                         </div>
                     </div>
@@ -89,8 +92,8 @@
                             <h2 class="heading">About me</h2>
                             <div class="content">
                                 <div class="row">
-                                    <div class="col-sm-5"><img class="profile-image img-responsive" src="/assets/images/avatar.png" alt="Dat Le" /></div>
-                                    <div class="col-sm-7 profile-content">
+                                    <div class="col-xs-5"><img class="profile-image img-responsive" src="/assets/images/avatar.png" alt="{{ site.owner[0].name }}" /></div>
+                                    <div class="col-xs-7 profile-content">
                                         <div class="name">Dat Le</div>
                                         <div class="title">Bug Maker</div>
                                         <ul class="social list-inline">

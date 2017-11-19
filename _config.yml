@@ -14,6 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Blog
+name: Blog
 owner: Dat Le
 email: lethanhdat@gmail.com
 avatar: /assests/images/avatar.png
@@ -28,11 +29,25 @@ ga: UA-60503139-2
 markdown: kramdown
 highlighter: rouge
 plugins:
+  - jekyll-sitemap
   - jekyll-feed
+  - jekyll-archives
 
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+
+jekyll-archives:
+  enabled: all
+  layout: archive
+  permalinks:
+    year: '/:year/'
+    month: '/:year/:month/'
+    day: '/:year/:month/:day/'
+    tag: '/tag/:name/'
+    category: '/category/:name/'
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
