@@ -77,12 +77,16 @@
                     <div class="section-inner">
                         <h2 class="heading">Tags</h2>
                         <div class="content">
-                            {% for tag in site.tags %}
-                            <a href="/tag/{{ tag[0] }}">
-                            <span class="badge" data-size="{{ tag[1].size }}">
-                                {{ tag[0] }}
+                            {% for t in site.data.tags %}
+                            {% for t2 in site.tags %}
+                            {% if t[1] == t2[0] %}
+                            <a href="/tag/{{ t[0] }}">
+                            <span class="badge">
+                                {{ t2[0] }}
                             </span>
                             </a>
+                            {% endif %}
+                            {% endfor %}
                             {% endfor %}
                         </div>
                     </div>

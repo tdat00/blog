@@ -1,0 +1,13 @@
+---
+title: Tag
+permalink: /tag/
+layout: default
+---
+<ul>
+{% for t in site.data.tags %}
+{% for t2 in site.tags %}
+{% if t[1] == t2[0] %}
+<li><a href="/tag/{{ t[0] }}">{{ t2[0] }}</a></li>
+{% endif %}
+{% endfor %}
+{% endfor %}
