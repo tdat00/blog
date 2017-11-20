@@ -16,5 +16,23 @@ layout: default
     <div class="content">
       {{ content }}
     </div>
+    <div class="tags text-right">
+      {% for t in site.data.tags %}
+      {% for tag in page.tags %}
+      {% if t[1] == tag %}
+      <a href="/tag/{{ t[0] }}">
+        <span class="badge">
+          {{ tag }}
+        </span>
+      </a>
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+    </div>
+    <hr />
+    <div class="post-footer">
+      <div class="fb-like" data-href="{{ page.url | absolute_url }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+      <div class="fb-comments" data-href="{{ page.url | absolute_url }}" data-numposts="5" data-width="100%"></div>
+    </div>
   </div>
 </section>

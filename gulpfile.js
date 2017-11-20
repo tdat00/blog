@@ -95,7 +95,7 @@ gulp.task('clean', ['clean-sites', 'clean-tags'], function (cb) {
   cb && cb();
 });
 
-gulp.task('build', ['clean', 'rebuild-tags'], function (cb) {
+gulp.task('build', ['rebuild-tags'], function (cb) {
   run('bundle exec jekyll build', cb);
 });
 

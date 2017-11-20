@@ -115,10 +115,22 @@ a.dotted-link:hover {
 }
 .header h1 {
   color: #3aaa64;
+  display: inline;
 }
 .header .sub-header {
   font-size: 24px;
   color: #778492;
+  display: inline;
+}
+@media (max-width: 768px) {
+  .header h1 {
+    display: block;
+    text-align: left;
+  }
+  .header .sub-header {
+    display: block;
+    text-align: left;
+  }
 }
 /* ======= Sections======= */
 .sections-wrapper {
@@ -227,6 +239,7 @@ a.dotted-link:hover {
 /* code highlight */
 .highlight pre code, pre code {
   white-space: pre !important;
+  overflow-x: scroll;
 }
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
