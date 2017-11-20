@@ -176,6 +176,16 @@ a.dotted-link:hover {
   font-style: italic;
   text-align: right;
 }
+.post .content img {
+  max-width: 100%;
+}
+.post .content img.thumb {
+  max-width: 200px;
+  display: block;
+}
+.post .content img.thumb.text-center {
+  margin: auto;
+}
 /* List section */
 .list ul li {
   margin-bottom: 10px;
