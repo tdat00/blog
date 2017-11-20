@@ -176,15 +176,42 @@ a.dotted-link:hover {
   font-style: italic;
   text-align: right;
 }
-.post .content img {
+.post .content.par-double-space p {
+  margin-top: 2rem;
+}
+.post .content.video-center iframe {
+  display: block;
+  margin: auto;
+}
+.post .content.img-center img {
+  display: block;
+  margin: auto;
+}
+.post .content * {
   max-width: 100%;
+}
+.post .content .text-center {
+  display: block;
+  margin: auto;
 }
 .post .content img.thumb {
   max-width: 200px;
-  display: block;
 }
-.post .content img.thumb.text-center {
-  margin: auto;
+/* tag */
+a.tag, a.tag:hover {
+  text-decoration: none;
+}
+.tag {
+  font-size: 14px;
+  background-color: #E1ECF4;
+  color: #39739d;
+  line-height: 2rem;
+  font-weight: normal;
+  border-radius: 5px;
+  min-width: 10px;
+  padding: 3px 7px;
+  text-align: center;
+  display: inline-block;
 }
 /* List section */
 .list ul li {

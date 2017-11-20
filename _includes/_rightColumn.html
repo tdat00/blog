@@ -17,17 +17,13 @@
   <aside class="aside section">
     <div class="section-inner">
       <h2 class="heading">
-        <a href="/tag">Tags</a>
+        <a href="/tag">All tags</a>
       </h2>
       <div class="content">
         {% for t in site.data.tags %}
         {% for t2 in site.tags %}
         {% if t[1] == t2[0] %}
-        <a href="/tag/{{ t[0] }}">
-          <span class="badge">
-            {{ t2[0] }}
-          </span>
-        </a>
+        <a href="/tag/{{ t[0] }}" class="tag">{{ t2[0] }}</a>
         {% endif %}
         {% endfor %}
         {% endfor %}

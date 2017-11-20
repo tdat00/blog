@@ -14,18 +14,14 @@ layout: default
         <div class="date col-sm-3 pull-right">{{ page.date | date: "%Y-%m-%d %H:%m" }}</div>
       </div>
     </div>
-    <div class="content">
+    <div class="content {{ page.class }}">
       {{ content }}
     </div>
     <div class="tags text-right">
       {% for t in site.data.tags %}
       {% for tag in page.tags %}
       {% if t[1] == tag %}
-      <a href="/tag/{{ t[0] }}">
-        <span class="badge">
-          {{ tag }}
-        </span>
-      </a>
+      <a href="/tag/{{ t[0] }}" class="tag">{{ tag }}</a>
       {% endif %}
       {% endfor %}
       {% endfor %}
