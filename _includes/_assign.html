@@ -1,0 +1,51 @@
+{% assign site-title = site.title %}
+{% assign site-header = site.header %}
+{% assign site-sub-header = site.sub-header %}
+{% assign site-description = site.description %}
+{% assign site-keywords = site.keywords %}
+
+{% assign page-title = page.title %}
+{% assign page-header = page.header %}
+{% assign page-sub-header = page.sub-header %}
+{% assign page-description = page.description %}
+{% assign page-keywords = page.keywords %}
+
+{% assign page-url = page.url %}
+{% assign page-absolute-url = page.url | absolute_url %}
+
+{% assign post-url = post.url %}
+{% assign post-absolute-url = post.url | absolute_url %}
+
+{% assign site-unixTimestamp = site.time | date: '%s' %}
+
+{% if page-title != null and page-title != blank %}
+{% assign title = page-title %}
+{% elsif site-title != null and site-title != blank %}
+{% assign title = site-title %}
+{% endif %}
+
+{% if page-header != null and page-header != blank %}
+{% assign header = page-header %}
+{% elsif site-header != null and site-header != blank %}
+{% assign header = site-header %}
+{% endif %}
+
+{% if page-sub-header != null and page-sub-header != blank %}
+{% assign sub-header = page-header %}
+{% elsif page-title != null and page-title != blank %}
+{% assign sub-header = page-title %}
+{% endif %}
+
+{% if page-description != null and page-description != blank %}
+{% assign description = page-description %}
+{% elsif page-title != null and page-title != blank %}
+{% assign description = page-title %}
+{% elsif site-description != null and site-description != blank %}
+{% assign description = site-description %}
+{% endif %}
+
+{% if page-keywords != null and page-keywords != blank %}
+{% assign keywords = page-keywords %}
+{% elsif site-keywords != null and site-keywords != blank %}
+{% assign keywords = site-keywords %}
+{% endif %}

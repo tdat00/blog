@@ -64,8 +64,7 @@ gulp.task('rebuild-tags', function (cb) {
     fs.writeFileSync('./tag/' + tag + '.md',
       `---
 layout: tag
-title: Posts with tag "{tag}"
-sub-header: Posts with tag "{tag}"
+title: Posts with tag '{tag}'
 tag: {tag}
 permalink: /tag/{tag-url}/
 ---`.replace(/\{tag\}/ig, tags[tag]).replace('{tag-url}', tag)

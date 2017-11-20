@@ -1,9 +1,10 @@
+{% include _assign.html %}
 <section class="post section">
   <div class="section-inner">
     <div class="heading">
       <div class="row">
         <div class="col-sm-12">
-          <h2 class="title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+          <h2 class="title"><a href="{{ post-url }}">{{ post.title }}</a></h2>
         </div>
       </div>
       <div class="row sub-title">
@@ -28,7 +29,8 @@
     </div>
     <hr />
     <div class="post-footer">
-      <div class="fb-like" data-href="{{ post.url | absolute_url }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+      <div class="fb-like" data-href="{{ post-absolute-url }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+      <div class="fb-comments" data-href="{{ post-absolute-url }}" data-numposts="1" data-width="100%"></div>
     </div>
   </div>
 </section>

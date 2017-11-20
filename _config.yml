@@ -13,17 +13,19 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Blog
 name: Blog
+title: Blog - Dat Le
+header: Blog
 owner: Dat Le
 email: lethanhdat@gmail.com
 avatar: /assests/images/avatar.png
 favicon: /favicon.ico
 description: >-
   Just a simple blog.
-baseurl: "/"
-url: "https://lethanhdat.com"
+keywords: Dat Le, blog, tdat00, lethanhdat@gmail.com, c#, csharp, .net, dotnet
+baseurl: /
 ga: UA-60503139-2
+fb-app: 1730425486970212
 
 # Build settings
 markdown: kramdown

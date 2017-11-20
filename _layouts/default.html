@@ -1,16 +1,4 @@
-{% if title == null and page.title %}{% assign title = page.title %}{% endif %}
-{% if title == null and site.title %}{% assign title = site.title %}{% endif %}
-
-{% if header == null and page.header %}{% assign header = page.header %}{% endif %}
-{% if header == null and site.header %}{% assign header = site.header %}{% endif %}
-{% if header == null and site.title %}{% assign header = site.title %}{% endif %}
-{% if header == null and title %}{% assign header = title %}{% endif %}
-
-{% if sub-header == null and page.sub-header %}{% assign sub-header = page.sub-header %}{% endif %}
-{% if sub-header == null and site.sub-header %}{% assign sub-header = site.sub-header %}{% endif %}
-
-{% assign unixTimestamp = site.time | date: '%s' %}
-
+{% include _assign.html %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,21 +11,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- For Google -->
-  <meta name="description" content="{{ page.description }}" />
-  <meta name="keywords" content="{{ page.keywords }}" />
+  <meta name="description" content="{{ description }}" />
+  <meta name="keywords" content="{{ keywords }}" />
   <meta name="author" content="{{ site.owner }}" />
 
   <!-- For Facebook -->
-  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="fb:app_id" content="{{ site.fb-app }}" />
+  <meta property="og:title" content="{{ title }}" />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="" />
-  <meta property="og:url" content="" />
-  <meta property="og:description" content="{{ page.description }}" />
+  <meta property="og:url" content="{{ page-absolute-url }}" />
+  <meta property="og:description" content="{{ description }}" />
 
   <!-- For Twitter -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="{{ page.title }}" />
-  <meta name="twitter:description" content="{{ page.description }}" />
+  <meta name="twitter:title" content="{{ title }}" />
+  <meta name="twitter:description" content="{{ description }}" />
   <meta name="twitter:image" content="" />
 
   <!-- Global site tag (gtag.js) - Google Analytics -->

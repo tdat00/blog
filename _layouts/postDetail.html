@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+{% include _assign.html %}
 <section class="post section">
   <div class="section-inner">
     <div class="heading">
@@ -31,8 +32,8 @@ layout: default
     </div>
     <hr />
     <div class="post-footer">
-      <div class="fb-like" data-href="{{ page.url | absolute_url }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-      <div class="fb-comments" data-href="{{ page.url | absolute_url }}" data-numposts="5" data-width="100%"></div>
+      <div class="fb-like" data-href="{{ page-absolute-url }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+      <div class="fb-comments" data-href="{{ page-absolute-url }}" data-numposts="5" data-width="100%"></div>
     </div>
   </div>
 </section>
