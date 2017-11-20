@@ -1,8 +1,20 @@
+{% if title == null and page.title %}{% assign title = page.title %}{% endif %}
+{% if title == null and site.title %}{% assign title = site.title %}{% endif %}
+
+{% if header == null and page.header %}{% assign header = page.header %}{% endif %}
+{% if header == null and site.header %}{% assign header = site.header %}{% endif %}
+{% if header == null and site.title %}{% assign header = site.title %}{% endif %}
+{% if header == null and title %}{% assign header = title %}{% endif %}
+
+{% if sub-header == null and page.sub-header %}{% assign sub-header = page.sub-header %}{% endif %}
+{% if sub-header == null and site.sub-header %}{% assign sub-header = site.sub-header %}{% endif %}
+
+{% assign unixTimestamp = site.time | date: '%s' %}
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>{{ page.title }}</title>
+  <title>{{ title }}</title>
   <link rel="shortcut icon" href="{{ site.favicon }}">
   <base href="{{ site.baseurl }}">
   <!-- Meta -->
@@ -46,139 +58,24 @@
   <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/styles.css?{{ unixTimestamp }}">
   <link rel="stylesheet" href="/assets/css/pygments/vs.min.css">
 </head>
 
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="home-page pull-left">
-        <a class="no-hover" href="/">
-          <h1 class="site-title">
-            {{ site.title }}
-            {% if page.site-sub-title %}
-            <span class="site-sub-title">> {{ page.site-sub-title }}</span>
-            {% endif %}
-          </h1>
-        </a>
-      </div>
-    </div>
-  </header>
+  {% include _header.html %}
   <div class="container sections-wrapper">
     <div class="row">
       <div class="primary col-md-8 col-sm-12 col-xs-12">
         {{ content }}
       </div>
-      <div class="secondary col-md-4 col-sm-12 col-xs-12">
-        <aside class="list aside section">
-          <div class="section-inner">
-            <h2 class="heading">Recent Posts</h2>
-            <div class="content">
-              {% for post in site.posts limit:5 %}
-              <a class="no-hover no-color" href="{{ post.url }}" title="{{ post.title }}">
-                <div class="item">
-                  <h5 class="title">{{ post.title }}</h3>
-                    <p>{{ post.excerpt }}</p>
-                </div>
-              </a>
-              {% endfor %}
-            </div>
-          </div>
-        </aside>
-        <aside class="aside section">
-          <div class="section-inner">
-            <h2 class="heading">
-              <a href="/tag">Tags</a>
-            </h2>
-            <div class="content">
-              {% for t in site.data.tags %} {% for t2 in site.tags %} {% if t[1] == t2[0] %}
-              <a href="/tag/{{ t[0] }}">
-                <span class="badge">
-                  {{ t2[0] }}
-                </span>
-              </a>
-              {% endif %} {% endfor %} {% endfor %}
-            </div>
-          </div>
-        </aside>
-        <aside class="profile aside section">
-          <div class="section-inner">
-            <h2 class="heading">About me
-              <p>I am a lazy developer</p>
-            </h2>
-            <div class="content">
-              <div class="row">
-                <div class="col-xs-5">
-                  <img class="profile-image img-responsive" src="/assets/images/avatar.png" alt="{{ site.owner[0].name }}"
-                  />
-                </div>
-                <div class="col-xs-7 profile-content">
-                  <div class="name">Dat Le</div>
-                  <div class="title">Bug Maker</div>
-                  <ul class="social list-inline">
-                    <li>
-                      <a href="mailto:lethanhdat.com">
-                        <i class="fa fa-envelope"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="skype:dat.lethanh">
-                        <i class="fa fa-skype"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://github.com/tdat00" target="_blank">
-                        <i class="fa fa-github-alt"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </aside>
-        <aside class="list aside section">
-          <div class="section-inner">
-            <h2 class="heading">Links</h2>
-            <div class="content">
-              <ul class="list-unstyled">
-                <li>
-                  <a class="no-hover" href="https://github.com/LeeVox/sdk" target="_blank">
-                    <i class="fa fa-external-link"></i> SDK for C#</a>
-                </li>
-                <li>
-                  <a class="no-hover" href="https://regextester.github.io" target="_blank">
-                    <i class="fa fa-external-link"></i> Regular Expression Tester Online</a>
-                </li>
-                <li>
-                  <a class="no-hover" href="https://leevox.com" target="_blank">
-                    <i class="fa fa-external-link"></i> LeeVox</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </aside>
-        <aside class="list aside section">
-          <div class="section-inner">
-            <h2 class="heading">Credit</h2>
-            <div class="content">
-              Free website template by
-              <a href="https://themes.3rdwavemedia.com/website-templates/free-responsive-website-template-for-developers/"
-                target="_blank">Xiaoying Riley</a>
-            </div>
-          </div>
-        </aside>
-      </div>
+      {% include _rightColumn.html %}
     </div>
   </div>
-  <footer class="footer">
-    <div class="container text-center">
-    </div>
-  </footer>
+  {% include _footer.html %}
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/assets/js/main.js"></script>
+  <script type="text/javascript" src="/assets/js/main.js?{{ unixTimestamp }}"></script>
 </body>
 
 </html>

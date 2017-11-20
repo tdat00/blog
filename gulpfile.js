@@ -27,7 +27,7 @@ var rebuildTags = function () {
 
   fs.readdirSync('./_posts').forEach(file => {
     var rgxMatchFilename = /\d{4}-\d{2}-\d{2}-.+\..+/ig;
-    var rgxMatchTags = /---[^]*tags:\s*\[(.+?)\][^]*---/igm;
+    var rgxMatchTags = /---[^]*tags:(.*?)\r?\n[^]*---/igm;
 
     if (!file.match(rgxMatchFilename)) {
       return;
@@ -35,10 +35,13 @@ var rebuildTags = function () {
 
     var match = rgxMatchTags.exec(fs.readFileSync(path.join('./_posts', file), 'utf8'));
     if (match && match[1]) {
-      match[1].split(',').forEach(tag => tags[friendlyUrl(tag.trim())] = tag.trim());
+      match[1].split(/[,\s]/ig).forEach(tag => {
+        if (tag.trim()) {
+          tags[friendlyUrl(tag.trim())] = tag.trim();
+        }
+      });
     }
   });
-
   return tags;
 };
 
@@ -61,14 +64,15 @@ gulp.task('rebuild-tags', function (cb) {
     fs.writeFileSync('./tag/' + tag + '.md',
       `---
 layout: tag
-title: Post with tag "{tag}"
-site-sub-title: {tag}
+title: Posts with tag "{tag}"
+sub-header: Posts with tag "{tag}"
 tag: {tag}
 permalink: /tag/{tag-url}/
 ---`.replace(/\{tag\}/ig, tags[tag]).replace('{tag-url}', tag)
     );
   }
   fs.writeFileSync('./_data/tags.yml', content);
+  cb && cb();
 });
 
 gulp.task('clean-tags', function (cb) {
@@ -76,6 +80,7 @@ gulp.task('clean-tags', function (cb) {
       read: false
     })
     .pipe(clean());
+    cb && cb()
 });
 
 gulp.task('clean-sites', function (cb) {
@@ -83,11 +88,14 @@ gulp.task('clean-sites', function (cb) {
       read: false
     })
     .pipe(clean());
+  cb && cb()
 });
 
-gulp.task('clean', ['clean-sites', 'clean-tags']);
+gulp.task('clean', ['clean-sites', 'clean-tags'], function (cb) {
+  cb && cb();
+});
 
-gulp.task('build', ['rebuild-tags'], function (cb) {
+gulp.task('build', ['clean', 'rebuild-tags'], function (cb) {
   run('bundle exec jekyll build', cb);
 });
 

@@ -1,0 +1,100 @@
+<div class="secondary col-md-4 col-sm-12 col-xs-12">
+  <aside class="list aside section">
+    <div class="section-inner">
+      <h2 class="heading">Recent Posts</h2>
+      <div class="content">
+        {% for post in site.posts limit:5 %}
+        <a class="no-hover no-color" href="{{ post.url }}" title="{{ post.title }}">
+          <div class="item">
+            <h5 class="title">{{ post.title }}</h3>
+              <p>{{ post.excerpt }}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </aside>
+  <aside class="aside section">
+    <div class="section-inner">
+      <h2 class="heading">
+        <a href="/tag">Tags</a>
+      </h2>
+      <div class="content">
+        {% for t in site.data.tags %} {% for t2 in site.tags %} {% if t[1] == t2[0] %}
+        <a href="/tag/{{ t[0] }}">
+          <span class="badge">
+            {{ t2[0] }}
+          </span>
+        </a>
+        {% endif %} {% endfor %} {% endfor %}
+      </div>
+    </div>
+  </aside>
+  <aside class="profile aside section">
+    <div class="section-inner">
+      <h2 class="heading">About me
+        <p>I am a lazy developer</p>
+      </h2>
+      <div class="content">
+        <div class="row">
+          <div class="col-xs-5">
+            <img class="profile-image img-responsive" src="/assets/images/avatar.png" alt="{{ site.owner[0].name }}"
+            />
+          </div>
+          <div class="col-xs-7 profile-content">
+            <div class="name">Dat Le</div>
+            <div class="title">Bug Maker</div>
+            <ul class="social list-inline">
+              <li>
+                <a href="mailto:lethanhdat.com">
+                  <i class="fa fa-envelope"></i>
+                </a>
+              </li>
+              <li>
+                <a href="skype:dat.lethanh">
+                  <i class="fa fa-skype"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/tdat00" target="_blank">
+                  <i class="fa fa-github-alt"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <aside class="list aside section">
+    <div class="section-inner">
+      <h2 class="heading">Links</h2>
+      <div class="content">
+        <ul class="list-unstyled">
+          <li>
+            <a class="no-hover" href="https://github.com/LeeVox/sdk" target="_blank">
+              <i class="fa fa-external-link"></i> SDK for C#</a>
+          </li>
+          <li>
+            <a class="no-hover" href="https://regextester.github.io" target="_blank">
+              <i class="fa fa-external-link"></i> Regular Expression Tester Online</a>
+          </li>
+          <li>
+            <a class="no-hover" href="https://leevox.com" target="_blank">
+              <i class="fa fa-external-link"></i> LeeVox</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+  <aside class="list aside section">
+    <div class="section-inner">
+      <h2 class="heading">Credit</h2>
+      <div class="content">
+        Free website template by
+        <a href="https://themes.3rdwavemedia.com/website-templates/free-responsive-website-template-for-developers/"
+          target="_blank">Xiaoying Riley</a>
+      </div>
+    </div>
+  </aside>
+</div>

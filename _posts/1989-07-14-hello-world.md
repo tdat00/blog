@@ -1,8 +1,9 @@
 ---
-layout: post
-title:  "Hello World"
-date:   1989-07-14 19:05:00 +0700
-tags: [hello-world]
+layout: postDetail
+title: Hello World
+sub-header: Hello World
+date: 1989-07-14 19:05:00 +0700
+tags: hello-world
 ---
 The boy who cried...
 
@@ -15,9 +16,9 @@ with code...
 using System;
 namespace HelloWorld
 {
-    class Hello 
+    class Hello
     {
-        static void Main() 
+        static void Main()
         {
             Console.WriteLine("Hello World!");
 
