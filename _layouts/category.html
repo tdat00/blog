@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<div>
+  {% assign page-categories = page.category | split: ' ' | join: '/' %}
+
+  {% for post in site.posts %}
+  {% assign post-categories = post.categories | join: '/' %}
+  {% if post-categories contains page-categories %}
+  {% include _post.html %}
+  {% endif %}
+  {% endfor %}
+</div>
