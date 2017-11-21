@@ -206,9 +206,7 @@ gulp.task('clean', ['clean-sites', 'clean-dates', 'clean-tags', 'clean-categorie
   cb && cb();
 });
 
-gulp.task('build', ['minify-_assign', 'build-dates', 'build-tags', 'build-categories'], function (cb) {
-  run('bundle exec jekyll build', cb);
-});
+gulp.task('build', ['minify-_assign', 'build-dates', 'build-tags', 'build-categories']);
 
 gulp.task('install-bundler', function (cb) {
   run('gem install bundler', cb)

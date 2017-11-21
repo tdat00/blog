@@ -1,12 +1,16 @@
 <div class="secondary col-md-4 col-sm-12 col-xs-12">
-  <aside class="list aside section">
+  <aside class="recent-posts list aside section">
     <div class="section-inner">
       <h2 class="heading">Recent Posts</h2>
       <div class="content">
         {% for post in site.posts limit:5 %}
         <div class="item">
-          <h5 class="title"><a class="inherit-color" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h5>
-          <p>{{ post.excerpt }}</p>
+          <h4 class="title"><a class="inherit-color" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h4>
+          {% if post.description != null and post.description != blank %}
+          <p>{{ post.description }}</p>
+          {% else %}
+          <p>{{ post.excerpt | strip_html }}</p>
+          {% endif %}
         </div>
         {% endfor %}
       </div>

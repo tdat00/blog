@@ -25,4 +25,4 @@ or embed a clip on Youtube...
 
 Please give it a try :)
 
-Demo: [https://github.com/tdat00/blog](https://github.com/tdat00/blog)
+Demo: <https://github.com/tdat00/blog>
