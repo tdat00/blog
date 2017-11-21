@@ -1,5 +1,5 @@
 ---
-layout: postDetail
+layout: post
 title: Hello World
 description: Just another Hello World.
 date: 1989-07-14 19:05:00 +0700

@@ -1,4 +1,4 @@
-{% include _assign.html %}
+{% include _assign %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@
   <meta property="og:title" content="{{ title }}" />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="" />
-  <meta property="og:url" content="{{ page-absolute-url }}" />
+  <meta property="og:url" content="{{ absolute-url }}" />
   <meta property="og:description" content="{{ description }}" />
 
   <!-- For Twitter -->
@@ -46,7 +46,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=1730425486970212';
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId={{ site.fb-app }}';
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
   </script>
@@ -55,7 +55,7 @@
   <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-  <link rel="stylesheet" href="/assets/css/styles.css?{{ site-unixTimestamp }}">
+  <link rel="stylesheet" href="/assets/css/styles.css?{{ site.time | date: '%s' }}">
   <link rel="stylesheet" href="/assets/css/pygments/vs.min.css">
 </head>
 
@@ -72,7 +72,7 @@
   {% include _footer.html %}
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/assets/js/main.js?{{ site-unixTimestamp }}"></script>
+  <script type="text/javascript" src="/assets/js/main.js?{{ site.time | date: '%s' }}"></script>
 </body>
 
 </html>

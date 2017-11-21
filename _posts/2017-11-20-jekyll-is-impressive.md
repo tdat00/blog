@@ -1,5 +1,5 @@
 ---
-layout: postDetail
+layout: post
 title: Jekyll is impressive.
 class: par-double-space img-center video-center
 date: 2017-11-20 18:20:00 +0700

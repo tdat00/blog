@@ -33,7 +33,7 @@ var rebuildTags = function () {
       return;
     }
 
-    var match = rgxMatchTags.exec(fs.readFileSync(path.join('./_posts', file), 'utf8'));
+    var match = rgxMatchTags.exec(readFile('./_posts/' + file));
     if (match && match[1]) {
       match[1].split(/[,\s]+/ig).forEach(tag => {
         if (tag.trim()) {
@@ -56,7 +56,7 @@ var rebuildCategories = function () {
       return;
     }
 
-    var match = rgxMatchCategories.exec(fs.readFileSync(path.join('./_posts', file), 'utf8'));
+    var match = rgxMatchCategories.exec(readFile('./_posts/' + file));
     if (match && match[1]) {
       var cats = match[1].split(/[,\s]+/ig);
       for (var i = 1; i <= cats.length; i++) {
@@ -72,17 +72,32 @@ var friendlyUrl = function (url) {
     .replace(/\./ig, 'dot');
 };
 
-var writeFile = function (filename, content) {
-  var folder = path.dirname(filename);
+var readFile = function (relativePath) {
+  return fs.readFileSync(path.resolve(relativePath), 'utf8');
+}
+
+var writeFile = function (relativePath, content) {
+  var folder = path.dirname(relativePath);
   if (!fs.existsSync(folder)) {
     fs.mkdirSync(folder);
   }
-  fs.writeFileSync(filename, content);
+  fs.writeFileSync(path.resolve(relativePath), content);
 };
 
 gulp.task('server', ['serve']);
 gulp.task('serve', function (cb) {
   run('bundle exec jekyll serve --watch');
+});
+
+gulp.task('minify-_assign', function (cb) {
+  var content = readFile('./_includes/_assign.beauty', 'utf8');
+  content = content
+    .replace(/\%\}\s+\{\%/ig, '%}{%')
+    .replace(/\s+/ig, ' ')
+    .replace(/\{\%\s+/ig, '{%')
+    .replace(/\s+\%\}/ig, '%}');
+  writeFile('./_includes/_assign', content);
+  cb && cb();
 });
 
 gulp.task('build-tags', function (cb) {
@@ -146,7 +161,7 @@ gulp.task('clean', ['clean-sites', 'clean-tags', 'clean-categories'], function (
   cb && cb();
 });
 
-gulp.task('build', ['build-tags', 'build-categories'], function (cb) {
+gulp.task('build', ['minify-_assign', 'build-tags', 'build-categories'], function (cb) {
   run('bundle exec jekyll build', cb);
 });
 
