@@ -1,24 +1,24 @@
-{% include _assign %}
-{% assign yyyy = date | date: '%Y' %}
-{% assign mm = date | date: '%m' %}
-{% assign dd = date | date: '%d' %}
+{%- include _assign -%}
+{%- assign yyyy = date | date: '%Y' -%}
+{%- assign mm = date | date: '%m' -%}
+{%- assign dd = date | date: '%d' -%}
 <section class="post section">
   <div class="section-inner">
     <div class="heading">
       <div class="row">
         <div class="col-sm-12">
-          {% if layout.view-post-detail %}
+          {%- if layout.view-post-detail -%}
           <h2 class="title">{{ title }}</h2>
-          {% else %}
+          {%- else -%}
           <h2 class="title"><a href="{{ url }}">{{ title }}</a></h2>
-          {% endif %}
+          {%- endif -%}
           <div class="fb-comments-count" data-href="{{ absolute-url }}"></div>
         </div>
       </div>
       <div class="row sub-title">
         <div class="date col-sm-3 pull-right">
           <a class="inherit-color" href="/{{ yyyy }}">{{ yyyy }}</a>-<a class="inherit-color" href="/{{ yyyy }}/{{ mm }}">{{ mm }}</a>-<a class="inherit-color" href="/{{ yyyy }}/{{ mm }}/{{ dd }}">{{ dd }}</a>
-          <span>&nbsp;{{ date | date: '%H:%M' }}</span>
+          <span>{{ date | date: '%H:%M' }}</span>
         </div>
       </div>
     </div>
@@ -26,20 +26,20 @@
       {{ post-or-page.content }}
     </div>
     <div class="tags text-right">
-      {% for t in site.data.tags %}
-      {% for tag in post-or-page.tags %}
-      {% if t[1] == tag %}
+      {%- for t in site.data.tags -%}
+      {%- for tag in post-or-page.tags -%}
+      {%- if t[1] == tag -%}
       <a href="/tag/{{ t[0] }}" class="tag">{{ tag }}</a>
-      {% endif %}
-      {% endfor %}
-      {% endfor %}
+      {%- endif -%}
+      {%- endfor -%}
+      {%- endfor -%}
     </div>
     <hr />
     <div class="post-footer">
       <div class="fb-like" data-href="{{ absolute-url }}" data-layout="standard" data-action="like" data-size="small" data-width="300px" data-show-faces="true" data-share="true"></div>
-      {% if layout.view-post-detail %}
+      {%- if layout.view-post-detail -%}
       <div class="fb-comments" data-href="{{ absolute-url }}" data-numposts="5" data-width="100%"></div>
-      {% endif %}
+      {%- endif -%}
     </div>
   </div>
 </section>

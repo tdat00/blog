@@ -1,4 +1,4 @@
-{% include _assign %}
+{%- include _assign -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +19,9 @@
   <meta property="fb:app_id" content="{{ site.fb-app }}" />
   <meta property="og:title" content="{{ title }}" />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="" />
+  {%- if fb-image != null and fb-image != blank -%}
+  <meta property="og:image" content="{{ fb-image }}" />
+  {%- endif -%}
   <meta property="og:url" content="{{ absolute-url }}" />
   <meta property="og:description" content="{{ description }}" />
 
@@ -60,16 +62,16 @@
 </head>
 
 <body>
-  {% include _header.html %}
+  {%- include _header.html -%}
   <div class="container sections-wrapper">
     <div class="row">
       <div class="primary col-md-8 col-sm-12 col-xs-12">
         {{ content }}
       </div>
-      {% include _rightColumn.html %}
+      {%- include _rightColumn.html -%}
     </div>
   </div>
-  {% include _footer.html %}
+  {%- include _footer.html -%}
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/assets/js/main.js?{{ site-time | date: '%s' }}"></script>

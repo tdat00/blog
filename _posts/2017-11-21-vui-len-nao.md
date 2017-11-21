@@ -3,6 +3,7 @@ layout: post
 title: Vui lên nào.
 description: Hắn vừa đi vừa chửi...
 class: img-center
+fb-image: https://scontent.fsgn5-3.fna.fbcdn.net/v/t1.0-9/12036774_10204479516818959_3929847576886079411_n.jpg?oh=a8ae25390220bcef77ce6226e517742c&oe=5A8F2644
 date: 2017-11-21 18:45:00 +0700
 categories: vn funny
 tags: funny dota2

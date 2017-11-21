@@ -111,17 +111,6 @@ gulp.task('serve', function (cb) {
   run('bundle exec jekyll serve --watch');
 });
 
-gulp.task('minify-_assign', function (cb) {
-  var content = readFile('./_includes/_assign.beauty', 'utf8');
-  content = content
-    .replace(/\%\}\s+\{\%/ig, '%}{%')
-    .replace(/\s+/ig, ' ')
-    .replace(/\{\%\s+/ig, '{%')
-    .replace(/\s+\%\}/ig, '%}');
-  writeFile('./_includes/_assign', content);
-  cb && cb();
-});
-
 gulp.task('build-dates', function (cb) {
   var dates = getAllDates();
   for (var date in dates) {
@@ -156,8 +145,10 @@ permalink: /tag/{tag-url}/
 });
 
 gulp.task('build-categories', function (cb) {
-  var categories = getAllCategories();
+  var content = '',
+    categories = getAllCategories();
   for (var categoryUrl in categories) {
+    content += categoryUrl + ': ' + categoryUrl + '\n';
     writeFile('./category/' + categoryUrl + '.md',
       `---
 layout: category
@@ -167,6 +158,7 @@ permalink: /{category-url}/
 ---`.replace(/\{category\}/ig, categories[categoryUrl]).replace(/\{category-url\}/ig, categoryUrl)
     );
   }
+  writeFile('./_data/categories.yml', content);
   cb && cb();
 });
 
@@ -206,7 +198,7 @@ gulp.task('clean', ['clean-sites', 'clean-dates', 'clean-tags', 'clean-categorie
   cb && cb();
 });
 
-gulp.task('build', ['minify-_assign', 'build-dates', 'build-tags', 'build-categories']);
+gulp.task('build', ['build-dates', 'build-tags', 'build-categories']);
 
 gulp.task('install-bundler', function (cb) {
   run('gem install bundler', cb)

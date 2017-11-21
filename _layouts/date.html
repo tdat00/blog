@@ -2,12 +2,12 @@
 layout: default
 ---
 <div>
-  {% assign page-date = page.date | prepend: '/' %}
+  {%- assign page-date = page.date | prepend: '/' -%}
 
-  {% for post in site.posts %}
-  {% assign post-date = post.date | date: '/%Y/%m/%d' %}
-  {% if post-date contains page-date %}
-  {% include _post.html %}
-  {% endif %}
-  {% endfor %}
+  {%- for post in site.posts -%}
+  {%- assign post-date = post.date | date: '/%Y/%m/%d' -%}
+  {%- if post-date contains page-date -%}
+  {%- include _post.html -%}
+  {%- endif -%}
+  {%- endfor -%}
 </div>

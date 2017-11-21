@@ -8,11 +8,11 @@ layout: default
     <h2 class="heading">{{ page.title }}</h2>
     <div class="content">
       <ul>
-        {% for t in site.data.tags %} {% for t2 in site.tags %} {% if t[1] == t2[0] %}
+        {%- for t in site.data.tags -%} {%- for t2 in site.tags -%} {%- if t[1] == t2[0] -%}
         <li>
           <a href="/tag/{{ t[0] }}">{{ t2[0] }}</a>
         </li>
-        {% endif %} {% endfor %} {% endfor %}
+        {%- endif -%} {%- endfor -%} {%- endfor -%}
     </div>
   </div>
 </section>

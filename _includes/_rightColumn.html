@@ -3,16 +3,30 @@
     <div class="section-inner">
       <h2 class="heading">Recent Posts</h2>
       <div class="content">
-        {% for post in site.posts limit:5 %}
+        {%- for post in site.posts limit:5 -%}
         <div class="item">
           <h4 class="title"><a class="inherit-color" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h4>
-          {% if post.description != null and post.description != blank %}
+          {%- if post.description != null and post.description != blank -%}
           <p>{{ post.description }}</p>
-          {% else %}
+          {%- else -%}
           <p>{{ post.excerpt | strip_html }}</p>
-          {% endif %}
+          {%- endif -%}
         </div>
-        {% endfor %}
+        {%- endfor -%}
+      </div>
+    </div>
+  </aside>
+  <aside class="list aside section">
+    <div class="section-inner">
+      <h2 class="heading">
+        Categories
+      </h2>
+      <div class="content">
+        <ul class="list-unstyled">
+          {%- for c in site.data.categories -%}
+          <li><i class="fa fa-anchor"></i> <a href="/{{ c[0] }}">{{ c[0] }}</a></li>
+          {%- endfor -%}
+        </ul>
       </div>
     </div>
   </aside>
@@ -22,13 +36,9 @@
         <a href="/tag">All tags</a>
       </h2>
       <div class="content">
-        {% for t in site.data.tags %}
-        {% for t2 in site.tags %}
-        {% if t[1] == t2[0] %}
-        <a href="/tag/{{ t[0] }}" class="tag">{{ t2[0] }}</a>
-        {% endif %}
-        {% endfor %}
-        {% endfor %}
+        {%- for t in site.data.tags -%}
+        <a href="/tag/{{ t[0] }}" class="tag">{{ t[1] }}</a>
+        {%- endfor -%}
       </div>
     </div>
   </aside>

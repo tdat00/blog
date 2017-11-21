@@ -2,7 +2,7 @@
 layout: default
 ---
 <div>
-  {% for post in site.posts limit:20 %}
-  {% include _post.html %}
-  {% endfor %}
+  {%- for post in site.posts limit:20 -%}
+  {%- include _post.html -%}
+  {%- endfor -%}
 </div>

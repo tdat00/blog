@@ -232,6 +232,7 @@ a.tag, a.tag:hover {
   padding: 3px 7px;
   text-align: center;
   display: inline-block;
+  margin: 3px;
 }
 blockquote {
   font-size: 16px !important;

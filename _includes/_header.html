@@ -1,9 +1,9 @@
-{% include _assign %}
+{%- include _assign -%}
 <header class="header">
   <div class="container">
     <h1><a href="/">{{ header }}</a></h1>
-    {% if sub-header != null %}
+    {%- if sub-header != null -%}
     <div class="sub-header">> {{ sub-header }}</div>
-    {% endif %}
+    {%- endif -%}
   </div>
 </header>
