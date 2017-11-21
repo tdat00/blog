@@ -122,7 +122,7 @@ a.dotted-link:hover {
   color: #778492;
   display: inline;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .header h1 {
     display: block;
     text-align: left;
@@ -169,6 +169,7 @@ a.dotted-link:hover {
 }
 .post .title {
   color: #3aaa64;
+  display: inline-block;
 }
 .post .date {
   min-width: 100px;
@@ -196,6 +197,19 @@ a.dotted-link:hover {
 }
 .post .content img.thumb {
   max-width: 200px;
+}
+/* facebook */
+.fb-comments-count {
+  font-size: 16px;
+  display: inline-block;
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+.fb-comments-count span.fb_comments_count::before {
+  font-family: 'FontAwesome';
+  content: '\f27b';
+  padding-left: 10px;
+  padding-right: 3px;
 }
 /* tag */
 a.tag, a.tag:hover {
@@ -277,15 +291,6 @@ a.tag, a.tag:hover {
 .highlight pre code, pre code {
   white-space: pre !important;
   overflow-x: scroll;
-}
-/* Extra small devices (phones, less than 768px) */
-@media (max-width: 767px) {
-  .header {
-    text-align: center;
-  }
-  .project-image {
-    margin-bottom: 15px;
-  }
 }
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */

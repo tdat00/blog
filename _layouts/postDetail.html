@@ -8,6 +8,7 @@ layout: default
       <div class="row">
         <div class="col-sm-12">
           <h2 class="title">{{ page.title }}</h2>
+          <div class="fb-comments-count" data-href="{{ post-absolute-url }}"></div>
         </div>
       </div>
       <div class="row">
@@ -28,7 +29,7 @@ layout: default
     </div>
     <hr />
     <div class="post-footer">
-      <div class="fb-like" data-href="{{ page-absolute-url }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+      <div class="fb-like" data-href="{{ page-absolute-url }}" data-layout="standard" data-action="like" data-size="small" data-width="300px" data-show-faces="true" data-share="true"></div>
       <div class="fb-comments" data-href="{{ page-absolute-url }}" data-numposts="5" data-width="100%"></div>
     </div>
   </div>
