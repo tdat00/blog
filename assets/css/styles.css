@@ -32,8 +32,8 @@ a {
   -ms-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
 }
-a.no-color {
-  color: #434343 !important;
+a.inherit-color {
+  color: inherit !important;
 }
 a.no-hover:hover {
   text-decoration: none;

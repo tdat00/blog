@@ -1,4 +1,7 @@
 {% include _assign %}
+{% assign yyyy = date | date: '%Y' %}
+{% assign mm = date | date: '%m' %}
+{% assign dd = date | date: '%d' %}
 <section class="post section">
   <div class="section-inner">
     <div class="heading">
@@ -13,7 +16,10 @@
         </div>
       </div>
       <div class="row sub-title">
-        <div class="date col-sm-3 pull-right">{{ date | date: "%Y-%m-%d %H:%m" }}</div>
+        <div class="date col-sm-3 pull-right">
+          <a class="inherit-color" href="/{{ yyyy }}">{{ yyyy }}</a>-<a class="inherit-color" href="/{{ yyyy }}/{{ mm }}">{{ mm }}</a>-<a class="inherit-color" href="/{{ yyyy }}/{{ mm }}/{{ dd }}">{{ dd }}</a>
+          <span>&nbsp;{{ date | date: '%H:%M' }}</span>
+        </div>
       </div>
     </div>
     <div class="content {{ post-or-page.class }}">

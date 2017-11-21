@@ -18,6 +18,7 @@
 {% assign post-url          = post.url %}
 {% assign post-absolute-url = post.url | absolute_url %}
 {% assign post-date         = post.date %}
+{% assign post-time         = post.time %}
 
 {% assign page-title        = page.title %}
 {% assign page-header       = page.header %}
@@ -27,6 +28,7 @@
 {% assign page-url          = page.url %}
 {% assign page-absolute-url = page.url | absolute_url %}
 {% assign page-date         = page.date %}
+{% assign page-time         = page.time %}
 
 {% assign site-title        = site.title %}
 {% assign site-header       = site.header %}
@@ -36,6 +38,7 @@
 {% assign site-url          = site.url %}
 {% assign site-absolute-url = site.url | absolute_url %}
 {% assign site-date         = site.date %}
+{% assign site-time         = site.time %}
 
 {% if post-title != null and post-title != blank %}
   {% assign title = post-title %}
@@ -107,4 +110,12 @@
   {% assign date = page-date %}
 {% else %}
   {% assign date = site-date %}
+{% endif %}
+
+{% if post-time != null and post-time != blank %}
+  {% assign time = post-time %}
+{% elsif page-time != null and page-time != blank %}
+  {% assign time = page-time %}
+{% else %}
+  {% assign time = site-time %}
 {% endif %}

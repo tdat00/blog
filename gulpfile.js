@@ -22,7 +22,29 @@ var run = function (command, cb) {
   });
 };
 
-var rebuildTags = function () {
+var getAllDates = function () {
+  var dates = {};
+
+  fs.readdirSync('./_posts').forEach(file => {
+    var rgxMatchFilename = /\d{4}-\d{2}-\d{2}-.+\.md$/ig;
+    var rgxMatchDates = /---[^]*date:\s*\[?\s*(\d{4}\-\d{2}\-\d{2}).*\]?\s*\r?\n[^]*---/igm;
+
+    if (!file.match(rgxMatchFilename)) {
+      return;
+    }
+
+    var match = rgxMatchDates.exec(readFile('./_posts/' + file));
+    if (match && match[1]) {
+      var arr = match[1].split('-');
+      dates[arr.slice(0,1).join('/')] = true;
+      dates[arr.slice(0,2).join('/')] = true;
+      dates[arr.slice(0,3).join('/')] = true;
+    }
+  });
+  return dates;
+};
+
+var getAllTags = function () {
   var tags = {};
 
   fs.readdirSync('./_posts').forEach(file => {
@@ -45,7 +67,7 @@ var rebuildTags = function () {
   return tags;
 };
 
-var rebuildCategories = function () {
+var getAllCategories = function () {
   var categories = {};
 
   fs.readdirSync('./_posts').forEach(file => {
@@ -100,9 +122,24 @@ gulp.task('minify-_assign', function (cb) {
   cb && cb();
 });
 
+gulp.task('build-dates', function (cb) {
+  var dates = getAllDates();
+  for (var date in dates) {
+    writeFile('./date/' + date + '.md',
+      `---
+layout: date
+title: Posts in {date}
+date: {date}
+permalink: /{date}/
+---`.replace(/\{date\}/ig, date)
+    );
+  }
+  cb && cb();
+});
+
 gulp.task('build-tags', function (cb) {
   var content = '',
-    tags = rebuildTags();
+    tags = getAllTags();
   for (var tagUrl in tags) {
     content += tagUrl + ': ' + tags[tagUrl] + '\n';
     writeFile('./tag/' + tagUrl + '.md',
@@ -119,7 +156,7 @@ permalink: /tag/{tag-url}/
 });
 
 gulp.task('build-categories', function (cb) {
-  var categories = rebuildCategories();
+  var categories = getAllCategories();
   for (var categoryUrl in categories) {
     writeFile('./category/' + categoryUrl + '.md',
       `---
@@ -131,6 +168,14 @@ permalink: /{category-url}/
     );
   }
   cb && cb();
+});
+
+gulp.task('clean-dates', function (cb) {
+  gulp.src('./date', {
+      read: false
+    })
+    .pipe(clean());
+    cb && cb()
 });
 
 gulp.task('clean-tags', function (cb) {
@@ -157,11 +202,11 @@ gulp.task('clean-sites', function (cb) {
   cb && cb()
 });
 
-gulp.task('clean', ['clean-sites', 'clean-tags', 'clean-categories'], function (cb) {
+gulp.task('clean', ['clean-sites', 'clean-dates', 'clean-tags', 'clean-categories'], function (cb) {
   cb && cb();
 });
 
-gulp.task('build', ['minify-_assign', 'build-tags', 'build-categories'], function (cb) {
+gulp.task('build', ['minify-_assign', 'build-dates', 'build-tags', 'build-categories'], function (cb) {
   run('bundle exec jekyll build', cb);
 });
 

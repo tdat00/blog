@@ -4,12 +4,10 @@
       <h2 class="heading">Recent Posts</h2>
       <div class="content">
         {% for post in site.posts limit:5 %}
-        <a class="no-hover no-color" href="{{ post.url }}" title="{{ post.title }}">
-          <div class="item">
-            <h5 class="title">{{ post.title }}</h3>
-              <p>{{ post.excerpt }}</p>
-          </div>
-        </a>
+        <div class="item">
+          <h5 class="title"><a class="inherit-color" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h5>
+          <p>{{ post.excerpt }}</p>
+        </div>
         {% endfor %}
       </div>
     </div>
