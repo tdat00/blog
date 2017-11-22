@@ -4,6 +4,9 @@
 <head>
   <title>{{ title }}</title>
   <link rel="shortcut icon" href="{{ site.favicon }}">
+  {%- if jekyll.environment == 'production' -%}
+  <link rel="canonical" href="{{ absolute-url-canonical }}" />
+  {%- endif -%}
   <base href="{{ site.baseurl }}">
   <!-- Meta -->
   <meta charset="utf-8">

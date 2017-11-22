@@ -129,7 +129,9 @@
 {%- assign og-image = post-or-page-or-site.og-image | absolute_url -%}
 
 {%- if jekyll.environment == 'production' -%}
+  {%- assign url-canonical = url -%}
   {%- assign url = url | replace: 'http://', 'https://' -%}
+  {%- assign absolute-url-canonical = absolute-url -%}
   {%- assign absolute-url = absolute-url | replace: 'http://', 'https://' -%}
 
   {%- assign og-image = og-image | replace: 'http://', 'https://' -%}
