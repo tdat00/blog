@@ -104,27 +104,6 @@
   {%- assign time = site-time -%}
 {%- endif -%}
 
-{%- if post-or-page.og-type -%}
-  {%- assign og-type = post-or-page-or-site.og-type -%}
-{%- elsif layout.og-type -%}
-  {%- assign og-type = layout.og-type -%}
-{%- endif -%}
-
-{%- assign og-image = post-or-page-or-site.og-image | absolute_url -%}
-
-{%- if jekyll.environment == 'production' -%}
-  {%- assign post-url = post-url | replace: 'http://', 'https://' -%}
-  {%- assign post-absolute-url = post-absolute-url | replace: 'http://', 'https://' -%}
-
-  {%- assign page-url = page-url | replace: 'http://', 'https://' -%}
-  {%- assign page-absolute-url = page-absolute-url | replace: 'http://', 'https://' -%}
-
-  {%- assign site-url = site-url | replace: 'http://', 'https://' -%}
-  {%- assign site-absolute-url = site-absolute-url | replace: 'http://', 'https://' -%}
-
-  {%- assign og-image = og-image | replace: 'http://', 'https://' -%}
-{%- endif -%}
-
 {%- if post-url -%}
   {%- assign url = post-url -%}
 {%- elsif page-url -%}
@@ -139,4 +118,19 @@
   {%- assign absolute-url = page-absolute-url -%}
 {%- else -%}
   {%- assign absolute-url = site-absolute-url -%}
+{%- endif -%}
+
+{%- if post-or-page.og-type -%}
+  {%- assign og-type = post-or-page.og-type -%}
+{%- elsif layout.og-type -%}
+  {%- assign og-type = layout.og-type -%}
+{%- endif -%}
+
+{%- assign og-image = post-or-page-or-site.og-image | absolute_url -%}
+
+{%- if jekyll.environment == 'production' -%}
+  {%- assign url = url | replace: 'http://', 'https://' -%}
+  {%- assign absolute-url = absolute-url | replace: 'http://', 'https://' -%}
+
+  {%- assign og-image = og-image | replace: 'http://', 'https://' -%}
 {%- endif -%}
