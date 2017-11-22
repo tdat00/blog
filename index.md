@@ -1,4 +1,4 @@
 ---
 layout: index
-fb-image: /assets/images/avatar.png
+og-image: /assets/images/avatar.png
 ---

@@ -1,7 +1,7 @@
-{%- if post != null -%}
+{%- if post -%}
   {%- assign post-or-page-or-site = post -%}
   {%- assign post-or-page = post -%}
-{%- elsif page != null -%}
+{%- elsif page -%}
   {%- assign post-or-page-or-site = page -%}
   {%- assign post-or-page = page -%}
   {%- assign page-or-site = page -%}
@@ -40,85 +40,103 @@
 {%- assign site-date         = site.date -%}
 {%- assign site-time         = site.time -%}
 
-{%- if post-title != null and post-title != blank -%}
+{%- if post-title -%}
   {%- assign title = post-title -%}
-{%- elsif page-title != null and page-title != blank -%}
+{%- elsif page-title -%}
   {%- assign title = page-title -%}
 {%- else -%}
   {%- assign title = site-title -%}
 {%- endif -%}
 
-{%- if post-header != null and post-header != blank -%}
+{%- if post-header -%}
   {%- assign header = post-header -%}
-{%- elsif page-header != null and page-header != blank -%}
+{%- elsif page-header -%}
   {%- assign header = page-header -%}
 {%- else -%}
   {%- assign header = site-header -%}
 {%- endif -%}
 
-{%- if post-sub-header != null and post-sub-header != blank -%}
+{%- if post-sub-header -%}
   {%- assign sub-header = post-sub-header -%}
-{%- elsif page-sub-header != null and page-sub-header != blank -%}
+{%- elsif page-sub-header -%}
   {%- assign sub-header = page-sub-header -%}
-{%- elsif post-title != null and post-title != blank -%}
+{%- elsif post-title -%}
   {%- assign sub-header = post-title -%}
-{%- elsif page-title != null and page-title != blank -%}
+{%- elsif page-title -%}
   {%- assign sub-header = page-title -%}
 {%- else -%}
   {%- assign sub-header = page-header -%}
 {%- endif -%}
 
-{%- if post-description != null and post-description != blank -%}
+{%- if post-description -%}
   {%- assign description = post-description -%}
-{%- elsif page-description != null and page-description != blank -%}
+{%- elsif page-description -%}
   {%- assign description = page-description -%}
-{%- elsif post-title != null and post-title != blank -%}
+{%- elsif post-title -%}
   {%- assign description = post-title -%}
-{%- elsif page-title != null and page-title != blank -%}
+{%- elsif page-title -%}
   {%- assign description = page-title -%}
 {%- else -%}
   {%- assign description = site-description -%}
 {%- endif -%}
 
-{%- if post-keywords != null and post-keywords != blank -%}
+{%- if post-keywords -%}
   {%- assign keywords = post-keywords -%}
-{%- elsif page-keywords != null and page-keywords != blank -%}
+{%- elsif page-keywords -%}
   {%- assign keywords = page-keywords -%}
 {%- else -%}
   {%- assign keywords = site-keywords -%}
 {%- endif -%}
 
-{%- if post-date != null and post-date != blank -%}
+{%- if post-date -%}
   {%- assign date = post-date -%}
-{%- elsif page-date != null and page-date != blank -%}
+{%- elsif page-date -%}
   {%- assign date = page-date -%}
 {%- else -%}
   {%- assign date = site-date -%}
 {%- endif -%}
 
-{%- if post-time != null and post-time != blank -%}
+{%- if post-time -%}
   {%- assign time = post-time -%}
-{%- elsif page-time != null and page-time != blank -%}
+{%- elsif page-time -%}
   {%- assign time = page-time -%}
 {%- else -%}
   {%- assign time = site-time -%}
 {%- endif -%}
 
-{%- if post-url != null and post-url != blank -%}
+{%- if post-or-page.og-type -%}
+  {%- assign og-type = post-or-page-or-site.og-type -%}
+{%- elsif layout.og-type -%}
+  {%- assign og-type = layout.og-type -%}
+{%- endif -%}
+
+{%- assign og-image = post-or-page-or-site.og-image | absolute_url -%}
+
+{%- if jekyll.environment == 'production' -%}
+  {%- assign post-url = post-url | replace: 'http://', 'https://' -%}
+  {%- assign post-absolute-url = post-absolute-url | replace: 'http://', 'https://' -%}
+
+  {%- assign page-url = page-url | replace: 'http://', 'https://' -%}
+  {%- assign page-absolute-url = page-absolute-url | replace: 'http://', 'https://' -%}
+
+  {%- assign site-url = site-url | replace: 'http://', 'https://' -%}
+  {%- assign site-absolute-url = site-absolute-url | replace: 'http://', 'https://' -%}
+
+  {%- assign og-image = og-image | replace: 'http://', 'https://' -%}
+{%- endif -%}
+
+{%- if post-url -%}
   {%- assign url = post-url -%}
-{%- elsif page-url != null and page-url != blank -%}
+{%- elsif page-url -%}
   {%- assign url = page-url -%}
 {%- else -%}
   {%- assign url = site-url -%}
 {%- endif -%}
 
-{%- if post-absolute-url != null and post-absolute-url != blank -%}
+{%- if post-absolute-url -%}
   {%- assign absolute-url = post-absolute-url -%}
-{%- elsif page-absolute-url != null and page-absolute-url != blank -%}
+{%- elsif page-absolute-url -%}
   {%- assign absolute-url = page-absolute-url -%}
 {%- else -%}
   {%- assign absolute-url = site-absolute-url -%}
 {%- endif -%}
-
-{%- assign host-url = '/' | absolute_url -%}
-{%- assign fb-image = post-or-page-or-site.fb-image | absolute_url -%}

@@ -18,12 +18,15 @@
   <!-- For Facebook -->
   <meta property="fb:app_id" content="{{ site.fb-app }}" />
   <meta property="og:title" content="{{ title }}" />
-  <meta property="og:type" content="article" />
-  {%- if fb-image != null and fb-image != blank -%}
-  <meta property="og:image" content="{{ fb-image }}" />
-  {%- endif -%}
-  <meta property="og:url" content="{{ absolute-url }}" />
   <meta property="og:description" content="{{ description }}" />
+  {%- if og-type -%}
+  <meta property="og:type" content="{{ og-type }}" />
+  {%- else -%}
+  <meta property="og:type" content="website" />
+  {%- endif -%}
+  {%- if og-image -%}
+  <meta property="og:image" content="{{ og-image }}" />
+  {%- endif -%}
 
   <!-- For Twitter -->
   <meta name="twitter:card" content="summary" />
@@ -31,6 +34,7 @@
   <meta name="twitter:description" content="{{ description }}" />
   <meta name="twitter:image" content="" />
 
+  {%- if jekyll.environment == 'production' -%}
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga }}"></script>
   <script>
@@ -41,6 +45,7 @@
     gtag('js', new Date());
     gtag('config', '{{ site.ga }}');
   </script>
+  {%- endif -%}
 
   <!-- facebook -->
   <div id="fb-root"></div>
@@ -58,7 +63,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
   <link rel="stylesheet" href="/assets/css/styles.css?{{ site-time | date: '%s' }}">
-  <link rel="stylesheet" href="/assets/css/pygments/vs.min.css">
+  <link rel="stylesheet" href="/assets/css/pygments/vs.css">
 </head>
 
 <body>

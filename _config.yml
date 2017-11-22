@@ -1,3 +1,14 @@
+# GitHub Pages read-only. DO NOT CHANGE
+lsi: false
+safe: true
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
 # Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your whole blog, values
@@ -28,17 +39,9 @@ ga: UA-60503139-2
 fb-app: 1730425486970212
 
 # Build settings
-markdown: kramdown
-highlighter: rouge
 plugins:
   - jekyll-sitemap
   - jekyll-feed
-
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    css_class: 'highlight'
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
