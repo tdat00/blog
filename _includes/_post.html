@@ -12,7 +12,7 @@
           {%- else -%}
           <h2 class="title"><a href="{{ url }}">{{ title }}</a></h2>
           {%- endif -%}
-          <div class="fb-comments-count" data-href="{{ absolute-url }}"></div>
+          <div class="fb-comments-count"></div>
         </div>
       </div>
       <div class="row sub-title">
@@ -36,9 +36,9 @@
     </div>
     <hr />
     <div class="post-footer">
-      <div class="fb-like" data-href="{{ absolute-url }}" data-layout="standard" data-action="like" data-size="small" data-width="300px" data-show-faces="true" data-share="true"></div>
+      <div class="fb-like" data-layout="standard" data-action="like" data-size="small" data-width="300px" data-show-faces="true" data-share="true"></div>
       {%- if layout.view-post-detail -%}
-      <div class="fb-comments" data-href="{{ absolute-url }}" data-numposts="5" data-width="100%"></div>
+      <div class="fb-comments" data-numposts="5" data-width="100%"></div>
       {%- endif -%}
     </div>
   </div>
