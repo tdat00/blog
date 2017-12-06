@@ -25,6 +25,7 @@ kramdown:
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 name: Blog
+repository: tdat00/lethanhdat.com
 title: Blog - Dat Le
 header: Blog
 owner: Dat Le

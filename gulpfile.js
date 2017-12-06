@@ -108,7 +108,12 @@ var writeFile = function (relativePath, content) {
 
 gulp.task('server', ['serve']);
 gulp.task('serve', function (cb) {
-  run('bundle exec jekyll serve --watch --incremental');
+  run('bundle exec jekyll serve --watch --incremental --drafts');
+});
+
+gulp.task('server-prod', ['serve-prod']);
+gulp.task('serve-prod', function (cb) {
+  run('bundle exec jekyll serve');
 });
 
 gulp.task('build-dates', function (cb) {
