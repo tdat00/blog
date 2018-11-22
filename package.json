@@ -10,7 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "git-state": "^4.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-clean": "^0.3.2",
     "gulp-util": "^3.0.8"
   }
