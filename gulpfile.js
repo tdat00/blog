@@ -1,9 +1,11 @@
 var gulp = require('gulp');
-var clean = require('gulp-clean');
+var del = require('del');
 var gutil = require('gulp-util');
 var spawn = require('child_process').spawn;
 var fs = require('fs');
 var path = require('path');
+var argv = require('yargs').argv;
+var buildDrafts = argv && (argv.draft !== undefined || argv.drafts !== undefined );
 
 var run = function (command, cb) {
   var child = spawn('cmd', ['/c', command]);
@@ -23,69 +25,85 @@ var run = function (command, cb) {
 };
 
 var getAllDates = function () {
-  var dates = {};
+  var dates = {},
+  fnProcess = (dir) => {
+    fs.readdirSync(dir).forEach(file => {
+      var rgxMatchFilename = /\d{4}-\d{2}-\d{2}-.+\.md$/ig;
+      var rgxMatchDates = /---[^]*date:\s*\[?\s*(\d{4}\-\d{2}\-\d{2}).*\]?\s*\r?\n[^]*---/igm;
+  
+      if (!file.match(rgxMatchFilename)) {
+        return;
+      }
+  
+      var match = rgxMatchDates.exec(readFile(dir + '/' + file));
+      if (match && match[1]) {
+        var arr = match[1].split('-');
+        dates[arr.slice(0,1).join('/')] = true;
+        dates[arr.slice(0,2).join('/')] = true;
+        dates[arr.slice(0,3).join('/')] = true;
+      }
+    });
+  };
 
-  fs.readdirSync('./_posts').forEach(file => {
-    var rgxMatchFilename = /\d{4}-\d{2}-\d{2}-.+\.md$/ig;
-    var rgxMatchDates = /---[^]*date:\s*\[?\s*(\d{4}\-\d{2}\-\d{2}).*\]?\s*\r?\n[^]*---/igm;
-
-    if (!file.match(rgxMatchFilename)) {
-      return;
-    }
-
-    var match = rgxMatchDates.exec(readFile('./_posts/' + file));
-    if (match && match[1]) {
-      var arr = match[1].split('-');
-      dates[arr.slice(0,1).join('/')] = true;
-      dates[arr.slice(0,2).join('/')] = true;
-      dates[arr.slice(0,3).join('/')] = true;
-    }
-  });
+  fnProcess('./_posts');
+  if (buildDrafts) {
+    fnProcess('./_drafts');
+  }
   return dates;
 };
 
 var getAllTags = function () {
-  var tags = {};
-
-  fs.readdirSync('./_posts').forEach(file => {
-    var rgxMatchFilename = /\d{4}-\d{2}-\d{2}-.+\.md$/ig;
-    var rgxMatchTags = /---[^]*tags:\s*\[?(.*?)\]?\s*\r?\n[^]*---/igm;
-
-    if (!file.match(rgxMatchFilename)) {
-      return;
-    }
-
-    var match = rgxMatchTags.exec(readFile('./_posts/' + file));
-    if (match && match[1]) {
-      match[1].split(/[,\s]+/ig).forEach(tag => {
-        if (tag.trim()) {
-          tags[friendlyUrl(tag.trim())] = tag.trim();
+  var tags = {},
+    fnProcess = (dir) => {
+      fs.readdirSync(dir).forEach(file => {
+        var rgxMatchFilename = /\d{4}-\d{2}-\d{2}-.+\.md$/ig;
+        var rgxMatchTags = /---[^]*tags:\s*\[?(.*?)\]?\s*\r?\n[^]*---/igm;
+    
+        if (!file.match(rgxMatchFilename)) {
+          return;
+        }
+    
+        var match = rgxMatchTags.exec(readFile(dir + '/' + file));
+        if (match && match[1]) {
+          match[1].split(/[,\s]+/ig).forEach(tag => {
+            if (tag.trim()) {
+              tags[friendlyUrl(tag.trim())] = tag.trim();
+            }
+          });
         }
       });
-    }
-  });
+    };
+  fnProcess('./_posts');
+  if (buildDrafts) {
+    fnProcess('./_drafts');
+  }
   return tags;
 };
 
 var getAllCategories = function () {
-  var categories = {};
-
-  fs.readdirSync('./_posts').forEach(file => {
-    var rgxMatchFilename = /\d{4}-\d{2}-\d{2}-.+\.md$/ig;
-    var rgxMatchCategories = /---[^]*categories:\s*\[?(.*?)\]?\s*\r?\n[^]*---/igm;
-
-    if (!file.match(rgxMatchFilename)) {
-      return;
-    }
-
-    var match = rgxMatchCategories.exec(readFile('./_posts/' + file));
-    if (match && match[1]) {
-      var cats = match[1].split(/[,\s]+/ig);
-      for (var i = 1; i <= cats.length; i++) {
-        categories[cats.slice(0, i).join('/')] = cats.slice(0, i).join(' ');
-      }
-    }
-  });
+  var categories = {},
+    fnProcess = (dir) => {
+      fs.readdirSync(dir).forEach(file => {
+        var rgxMatchFilename = /\d{4}-\d{2}-\d{2}-.+\.md$/ig;
+        var rgxMatchCategories = /---[^]*categories:\s*\[?(.*?)\]?\s*\r?\n[^]*---/igm;
+    
+        if (!file.match(rgxMatchFilename)) {
+          return;
+        }
+    
+        var match = rgxMatchCategories.exec(readFile(dir + '/' + file));
+        if (match && match[1]) {
+          var cats = match[1].split(/[,\s]+/ig);
+          for (var i = 1; i <= cats.length; i++) {
+            categories[cats.slice(0, i).join('/')] = cats.slice(0, i).join(' ');
+          }
+        }
+      });
+    };
+  fnProcess('./_posts');
+  if (buildDrafts) {
+    fnProcess('./_drafts');
+  }
   return categories;
 };
 
@@ -106,15 +124,15 @@ var writeFile = function (relativePath, content) {
   fs.writeFileSync(path.resolve(relativePath), content);
 };
 
-gulp.task('server', ['serve']);
 gulp.task('serve', function (cb) {
   run('bundle exec jekyll serve --watch --incremental --drafts');
 });
+gulp.task('server', gulp.series('serve'));
 
-gulp.task('server-prod', ['serve-prod']);
 gulp.task('serve-prod', function (cb) {
   run('bundle exec jekyll serve');
 });
+gulp.task('server-prod', gulp.series('serve-prod'));
 
 gulp.task('build-dates', function (cb) {
   var dates = getAllDates();
@@ -168,47 +186,33 @@ permalink: /{category-url}/
 });
 
 gulp.task('clean-dates', function (cb) {
-  gulp.src('./date', {
-      read: false
-    })
-    .pipe(clean());
-    cb && cb()
-});
-
-gulp.task('clean-tags', function (cb) {
-  gulp.src('./tag/**/*.md', {
-      read: false
-    })
-    .pipe(clean());
-    cb && cb()
-});
-
-gulp.task('clean-categories', function (cb) {
-  gulp.src('./category', {
-      read: false
-    })
-    .pipe(clean());
-    cb && cb()
-});
-
-gulp.task('clean-sites', function (cb) {
-  gulp.src('./_site', {
-      read: false
-    })
-    .pipe(clean());
-  cb && cb()
-});
-
-gulp.task('clean', ['clean-sites', 'clean-dates', 'clean-tags', 'clean-categories'], function (cb) {
+  del.sync('./date');
   cb && cb();
 });
 
-gulp.task('build', ['build-dates', 'build-tags', 'build-categories']);
+gulp.task('clean-tags', function (cb) {
+  del.sync('./tag');
+  cb && cb();
+});
+
+gulp.task('clean-categories', function (cb) {
+  del.sync('./category');
+  cb && cb();
+});
+
+gulp.task('clean-sites', function (cb) {
+  del.sync('./_site');
+  cb && cb();
+});
+
+gulp.task('clean', gulp.series('clean-sites', 'clean-dates', 'clean-tags', 'clean-categories'));
+
+gulp.task('build', gulp.series('clean', 'build-dates', 'build-tags', 'build-categories'));
 
 gulp.task('install-bundler', function (cb) {
-  run('gem install bundler', cb)
+  run('gem install bundler', cb);
 });
 
-gulp.task('install', ['install-bundler'], function (cb) {
+gulp.task('install', gulp.series('install-bundler', function (cb) {
   run('bundle install', cb);
-});
+}));
